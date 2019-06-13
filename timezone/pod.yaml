@@ -1,0 +1,22 @@
+# set the same timezone as worker node
+apiVersion: v1
+kind: Pod
+metadata:
+  name: timezone-test
+  namespace: skaji
+spec:
+  restartPolicy: Never
+  containers:
+    - name: alpine
+      image: alpine
+      command:
+        - ash
+        - -c
+        - trap exit TERM INT; while :; do sleep 1; done
+      volumeMounts:
+        - name: tz-config
+          mountPath: /etc/localtime
+  volumes:
+    - name: tz-config
+      hostPath:
+        path: /etc/localtime

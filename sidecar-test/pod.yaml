@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar-test
+  namespace: skaji
+spec:
+  restartPolicy: Never
+  containers:
+  - name: origin
+    image: skaji/sidecar-test-origin
+  - name: proxy
+    image: skaji/sidecar-test-proxy
