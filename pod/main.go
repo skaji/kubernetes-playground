@@ -9,6 +9,7 @@ import (
 	"time"
 )
 
+var version = "PLACEHOLDER"
 var podName string
 var startTime string
 
@@ -31,6 +32,7 @@ func dump(r *http.Request) string {
 		"pod_name":        podName,
 		"start_time":      startTime,
 		"current_time":    time.Now().Format(time.RFC3339),
+		"pod_version":     version,
 	}
 	b, _ := json.Marshal(m)
 	return string(b)
